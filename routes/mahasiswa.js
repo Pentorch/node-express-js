@@ -8,8 +8,15 @@ router.get("/", (req, res, next) => {
   });
 });
 router.post("/", (req, res, next) => {
+  const mahasiswa = {
+    nim: req.body.nim,
+    nama: req.body.nama,
+    alamat: req.body.alamat,
+    jurusan: req.body.jurusan,
+  };
   res.status(200).json({
     message: "Post Method Mahasiswa",
+    data: mahasiswa,
   });
 });
 router.get("/:nim", (req, res, next) => {

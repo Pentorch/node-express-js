@@ -1,0 +1,23 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "Rest full API with Node JS",
+  "main": "app.js",
+  "scripts": {
+    "test": "server.js"
+  },
+  "keywords": [
+    "build",
+    "restfull",
+    "api",
+    "with",
+    "node",
+    "js"
+  ],
+  "author": "pentorch",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
+  }
+}

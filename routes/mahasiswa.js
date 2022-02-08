@@ -15,15 +15,20 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  const mahasiswa = {
-    nim: req.body.nim,
-    nama: req.body.nama,
-    alamat: req.body.alamat,
-    jurusan: req.body.jurusan,
-  };
-  res.status(200).json({
-    message: "Post Method Mahasiswa",
-    data: mahasiswa,
+  const { nim, nama, alamat, jurusan } = req.body;
+  var sql =
+    "INSERT INTO mahasiswa (nim, nama, jurusan) VALUES ('" +
+    nim +
+    "', '" +
+    nama +
+    "', '" +
+    jurusan +
+    "')";
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    res.status(200).json({
+      message: "Berhasil Tambah Data Mahasiswa",
+    });
   });
 });
 router.get("/:nim", (req, res, next) => {
@@ -39,13 +44,29 @@ router.get("/:nim", (req, res, next) => {
 });
 
 router.put("/", (req, res, next) => {
-  res.status(200).json({
-    message: "Put Method Mahasiswa",
+  const { nim, nama, jurusan } = req.body;
+  var sql =
+    "UPDATE mahasiswa SET nama = '" +
+    nama +
+    "',  jurusan = '" +
+    jurusan +
+    "' WHERE nim = " +
+    nim;
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    res.status(200).json({
+      message: "Berhasil Ubah Data Mahasiswa",
+    });
   });
 });
-router.delete("/", (req, res, next) => {
-  res.status(200).json({
-    message: "Delete Method Mahasiswa",
+router.delete("/:nim", (req, res, next) => {
+  const nim = req.params.nim;
+  var sql = "DELETE FROM mahasiswa WHERE nim =" + nim;
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    res.status(200).json({
+      message: "Berhasil Delete Data Mahasiswa",
+    });
   });
 });
 
